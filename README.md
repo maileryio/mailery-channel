@@ -1,14 +1,14 @@
-# _____
+# Channel module for Mailery Platform
 
-**_____**
+**Channel module for Mailery Platform**
 
-[![Latest Stable Version](https://poser.pugx.org/maileryio/_____/v/stable)](https://packagist.org/packages/maileryio/_____)
-[![Total Downloads](https://poser.pugx.org/maileryio/_____/downloads)](https://packagist.org/packages/maileryio/_____)
-[![Build Status](https://travis-ci.com/maileryio/_____.svg?branch=master)](https://travis-ci.com/maileryio/_____)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/maileryio/_____.svg)](https://scrutinizer-ci.com/g/maileryio/_____/)
-[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/maileryio/_____.svg)](https://scrutinizer-ci.com/g/maileryio/_____/)
+[![Latest Stable Version](https://poser.pugx.org/maileryio/mailery-channel/v/stable)](https://packagist.org/packages/maileryio/mailery-channel)
+[![Total Downloads](https://poser.pugx.org/maileryio/mailery-channel/downloads)](https://packagist.org/packages/maileryio/mailery-channel)
+[![Build Status](https://travis-ci.com/maileryio/mailery-channel.svg?branch=master)](https://travis-ci.com/maileryio/mailery-channel)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/maileryio/mailery-channel.svg)](https://scrutinizer-ci.com/g/maileryio/mailery-channel/)
+[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/maileryio/mailery-channel.svg)](https://scrutinizer-ci.com/g/maileryio/mailery-channel/)
 
-_____
+Channel module for Mailery Platform
 
 ## Installation
 
@@ -17,13 +17,13 @@ The preferred way to install this library is through [composer](http://getcompos
 Either run
 
 ```sh
-php composer.phar require "maileryio/_____"
+php composer.phar require "maileryio/mailery-channel"
 ```
 
 or add
 
 ```json
-"maileryio/_____": "*"
+"maileryio/mailery-channel": "*"
 ```
 
 to the require section of your composer.json.
