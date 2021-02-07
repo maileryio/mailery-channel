@@ -3,7 +3,6 @@
 namespace Mailery\Channel\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Mailery\Channel\ChannelInterface;
 
 class ChannelList extends ArrayCollection
 {
