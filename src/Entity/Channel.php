@@ -2,9 +2,6 @@
 
 namespace Mailery\Channel\Entity;
 
-use Mailery\Activity\Log\Entity\LoggableEntityInterface;
-use Mailery\Activity\Log\Entity\LoggableEntityTrait;
-
 /**
  * @Cycle\Annotated\Annotation\Entity(
  *      table = "channels",
@@ -12,22 +9,26 @@ use Mailery\Activity\Log\Entity\LoggableEntityTrait;
  *      mapper = "Mailery\Channel\Mapper\ChannelMapper"
  * )
  */
-class Channel implements LoggableEntityInterface
+abstract class Channel
 {
-    use LoggableEntityTrait;
-
     /**
      * @Cycle\Annotated\Annotation\Column(type = "primary")
      * @var int|null
      */
-    private $id;
+    protected $id;
+
+    /**
+     * @Cycle\Annotated\Annotation\Column(type = "string(255)")
+     * @var string
+     */
+    protected $name;
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return 'Channel';
+        return $this->getName();
     }
 
     /**
@@ -45,6 +46,25 @@ class Channel implements LoggableEntityInterface
     public function setId(int $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return self
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

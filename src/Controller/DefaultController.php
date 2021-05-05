@@ -2,7 +2,6 @@
 
 namespace Mailery\Channel\Controller;
 
-use Mailery\Channel\Form\ChannelForm;
 use Mailery\Channel\Service\ChannelCrudService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -14,6 +13,7 @@ use Mailery\Widget\Search\Form\SearchForm;
 use Mailery\Widget\Search\Model\SearchByList;
 use Mailery\Channel\Filter\ChannelFilter;
 use Mailery\Channel\Search\ChannelSearchBy;
+use Mailery\Channel\Model\ChannelTypeList;
 
 class DefaultController
 {
@@ -56,7 +56,7 @@ class DefaultController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request): Response
+    public function index(Request $request, ChannelTypeList $channelTypes): Response
     {
         $queryParams = $request->getQueryParams();
         $pageNum = (int) ($queryParams['page'] ?? 1);
@@ -77,58 +77,6 @@ class DefaultController
             ->withPageSize(self::PAGINATION_INDEX)
             ->withCurrentPage($pageNum);
 
-        return $this->viewRenderer->render('index', compact('searchForm', 'paginator'));
-    }
-
-    /**
-     * @param Request $request
-     * @param SearchForm $searchForm
-     * @return Response
-     */
-    public function view(Request $request, SearchForm $searchForm): Response
-    {
-        ;
-    }
-
-    /**
-     * @param Request $request
-     * @param ChannelForm $channelForm
-     * @param UrlGenerator $urlGenerator
-     * @return Response
-     */
-    public function create(Request $request, ChannelForm $channelForm, UrlGenerator $urlGenerator): Response
-    {
-        ;
-    }
-
-    /**
-     * @param Request $request
-     * @param ChannelForm $channelForm
-     * @param UrlGenerator $urlGenerator
-     * @return Response
-     */
-    public function edit(Request $request, ChannelForm $channelForm, UrlGenerator $urlGenerator): Response
-    {
-        ;
-    }
-
-    /**
-     * @param Request $request
-     * @param ChannelCrudService $channelCrudService
-     * @param UrlGenerator $urlGenerator
-     * @return Response
-     */
-    public function delete(Request $request, ChannelCrudService $channelCrudService, UrlGenerator $urlGenerator): Response
-    {
-        $channelId = $request->getAttribute('id');
-        if (empty($channelId) || ($channel = $this->campaignRepo->findByPK($channelId)) === null) {
-            return $this->responseFactory->createResponse(404);
-        }
-
-        $channelCrudService->delete($channel);
-
-        return $this->responseFactory
-            ->createResponse(302)
-            ->withHeader('Location', $urlGenerator->generate('/channel/default/index'));
+        return $this->viewRenderer->render('index', compact('searchForm', 'paginator', 'channelTypes'));
     }
 }

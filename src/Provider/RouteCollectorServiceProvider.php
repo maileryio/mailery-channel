@@ -11,6 +11,10 @@ use Mailery\Channel\Controller\DefaultController;
 
 final class RouteCollectorServiceProvider extends ServiceProvider
 {
+    /**
+     * @param ContainerInterface $container
+     * @return void
+     */
     public function register(ContainerInterface $container): void
     {
         /** @var RouteCollectorInterface $collector */
@@ -22,18 +26,6 @@ final class RouteCollectorServiceProvider extends ServiceProvider
                     Route::get('/default/index')
                         ->action([DefaultController::class, 'index'])
                         ->name('/channel/default/index'),
-                    Route::get('/default/view/{id:\d+}')
-                        ->action([DefaultController::class, 'view'])
-                        ->name('/channel/default/view'),
-                    Route::methods(['GET', 'POST'], '/default/create')
-                        ->action([DefaultController::class, 'create'])
-                        ->name('/channel/default/create'),
-                    Route::methods(['GET', 'POST'], '/default/edit/{id:\d+}')
-                        ->action([DefaultController::class, 'edit'])
-                        ->name('/channel/default/edit'),
-                    Route::delete('/default/delete/{id:\d+}')
-                        ->action([DefaultController::class, 'delete'])
-                        ->name('/channel/default/delete'),
                 )
         );
     }

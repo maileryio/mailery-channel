@@ -10,7 +10,7 @@ return [
     ],
 
     'maileryio/mailery-channel' => [
-        'channels' => [],
+        'types' => [],
     ],
 
     'maileryio/mailery-menu-navbar' => [

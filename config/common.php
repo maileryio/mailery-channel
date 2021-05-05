@@ -1,15 +1,15 @@
 <?php
 
 use Mailery\Channel\Entity\Channel;
-use Mailery\Channel\Model\ChannelList;
+use Mailery\Channel\Model\ChannelTypeList;
 use Mailery\Channel\Repository\ChannelRepository;
 use Psr\Container\ContainerInterface;
 use Cycle\ORM\ORMInterface;
 
 return [
-    ChannelList::class => [
+    ChannelTypeList::class => [
         '__construct()' => [
-            'channels' => $params['maileryio/mailery-channel']['channels'],
+            'elements' => $params['maileryio/mailery-channel']['types'],
         ],
     ],
     ChannelRepository::class => static function (ContainerInterface $container) {

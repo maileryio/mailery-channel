@@ -19,6 +19,8 @@ use Yiisoft\Html\Html;
 /** @var Yiisoft\Router\UrlGeneratorInterface $urlGenerator */
 /** @var Yiisoft\Data\Reader\DataReaderInterface $dataReader*/
 /** @var Yiisoft\Data\Paginator\PaginatorInterface $paginator */
+/** @var Mailery\Channel\Model\ChannelTypeList $channelTypes */
+
 $this->setTitle('All channels');
 
 ?><div class="row">
@@ -41,17 +43,15 @@ $this->setTitle('All channels');
                         <?= Icon::widget()->name('plus')->options(['class' => 'mr-1']); ?>
                         Add new channel
                     </template>
-                    <?php
-//                        foreach ($campaignTypes as $campaignType) {
-//                            echo Html::tag(
-//                                'b-dropdown-item',
-//                                $campaignType->getCreateLabel(),
-//                                [
-//                                    'href' => $urlGenerator->generate($campaignType->getCreateRouteName(), $campaignType->getCreateRouteParams()),
-//                                ]
-//                            );
-//                        }
-                    ?>
+                    <?php foreach ($channelTypes as $channelType) {
+                        echo Html::tag(
+                            'b-dropdown-item',
+                            $channelType->getCreateLabel(),
+                            [
+                                'href' => $urlGenerator->generate($channelType->getCreateRouteName(), $channelType->getCreateRouteParams()),
+                            ]
+                        );
+                    } ?>
                 </b-dropdown>
             </div>
         </div>
@@ -75,42 +75,10 @@ $this->setTitle('All channels');
             ->columns([
                 (new DataColumn())
                     ->header('Name')
-                    ->content(function (Campaign $data, int $index) use ($urlGenerator) {
+                    ->content(function (Channel $data, int $index) use ($urlGenerator) {
                         return Html::a(
                             $data->getName(),
                             $urlGenerator->generate($data->getViewRouteName(), $data->getViewRouteParams())
-                        );
-                    }),
-                (new DataColumn())
-                    ->header('Sender')
-                    ->content(function (Campaign $data, int $index) use ($urlGenerator) {
-                        return Html::a(
-                            $data->getSender()->getName(),
-                            $urlGenerator->generate($data->getSender()->getViewRouteName(), $data->getSender()->getViewRouteParams())
-                        );
-                    }),
-                (new DataColumn())
-                    ->header('Template')
-                    ->content(function (Campaign $data, int $index) use ($urlGenerator) {
-                        return Html::a(
-                            $data->getTemplate()->getName(),
-                            $urlGenerator->generate($data->getTemplate()->getViewRouteName(), $data->getTemplate()->getViewRouteParams())
-                        );
-                    }),
-                (new DataColumn())
-                    ->header('Groups')
-                    ->content(function (Campaign $data, int $index) use ($urlGenerator) {
-                        return implode(
-                            '<br />',
-                            array_map(
-                                function (Group $group) use($urlGenerator) {
-                                    return Html::a(
-                                        $group->getName(),
-                                        $urlGenerator->generate($group->getViewRouteName(), $group->getViewRouteParams())
-                                    );
-                                },
-                                $data->getGroups()->toArray()
-                            )
                         );
                     }),
                 (new ActionColumn())
@@ -119,7 +87,7 @@ $this->setTitle('All channels');
                     ])
                     ->header('Edit')
                     ->view('')
-                    ->update(function (Campaign $data, int $index) use ($urlGenerator) {
+                    ->update(function (Channel $data, int $index) use ($urlGenerator) {
                         return Html::a(
                             Icon::widget()->name('pencil')->render(),
                             $urlGenerator->generate($data->getEditRouteName(), $data->getEditRouteParams()),
@@ -137,7 +105,7 @@ $this->setTitle('All channels');
                     ->header('Delete')
                     ->view('')
                     ->update('')
-                    ->delete(function (Campaign $data, int $index) use ($urlGenerator) {
+                    ->delete(function (Channel $data, int $index) use ($urlGenerator) {
                         return Link::widget()
                             ->label(Icon::widget()->name('delete')->options(['class' => 'mr-1'])->render())
                             ->method('delete')
