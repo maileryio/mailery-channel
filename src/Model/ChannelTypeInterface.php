@@ -2,6 +2,9 @@
 
 namespace Mailery\Channel\Model;
 
+use Mailery\Channel\Handler\HandlerInterface;
+use Mailery\Campaign\Recipient\Model\RecipientIterator;
+
 interface ChannelTypeInterface
 {
     /**
@@ -29,4 +32,14 @@ interface ChannelTypeInterface
      * @return bool
      */
     public function isEntitySameType(object $entity): bool;
+
+    /**
+     * @return HandlerInterface
+     */
+    public function getHandler(): HandlerInterface;
+
+    /**
+     * @return RecipientIterator
+     */
+    public function getRecipientIterator(): RecipientIterator;
 }
