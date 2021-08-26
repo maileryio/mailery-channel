@@ -16,7 +16,7 @@ return [
     ],
 
     HandlerInterface::class => [
-        '__class' => RootHandler::class,
+        'class' => RootHandler::class,
         '__construct()' => [
             'handlers' => $params['maileryio/mailery-channel']['handlers'],
         ],
