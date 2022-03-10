@@ -2,26 +2,43 @@
 
 namespace Mailery\Channel\Entity;
 
-/**
- * @Cycle\Annotated\Annotation\Entity(
- *      table = "channels",
- *      repository = "Mailery\Channel\Repository\ChannelRepository",
- *      mapper = "Mailery\Channel\Mapper\ChannelMapper"
- * )
- */
+use Cycle\Annotated\Annotation\Entity;
+use Cycle\Annotated\Annotation\Column;
+use Cycle\Annotated\Annotation\Inheritance\DiscriminatorColumn;
+use Mailery\Channel\Repository\ChannelRepository;
+use Mailery\Channel\Mapper\ChannelMapper;
+use Cycle\ORM\Entity\Behavior;
+
+#[Entity(
+    table: 'channels',
+    repository: ChannelRepository::class,
+    mapper: ChannelMapper::class
+)]
+#[Behavior\CreatedAt(
+    field: 'createdAt',
+    column: 'created_at'
+)]
+#[Behavior\UpdatedAt(
+    field: 'updatedAt',
+    column: 'updated_at'
+)]
+#[DiscriminatorColumn(name: 'type')]
 abstract class Channel
 {
-    /**
-     * @Cycle\Annotated\Annotation\Column(type = "primary")
-     * @var int|null
-     */
-    protected $id;
+    #[Column(type: 'primary')]
+    protected int $id;
 
-    /**
-     * @Cycle\Annotated\Annotation\Column(type = "string(255)")
-     * @var string
-     */
-    protected $name;
+    #[Column(type: 'string(255)')]
+    protected string $name;
+
+    #[Column(type: 'string(255)')]
+    protected string $type;
+
+    #[Column(type: 'datetime')]
+    private \DateTimeImmutable $createdAt;
+
+    #[Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * @return string

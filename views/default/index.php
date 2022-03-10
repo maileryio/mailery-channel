@@ -4,7 +4,6 @@ use Mailery\Activity\Log\Widget\ActivityLogLink;
 use Mailery\Icon\Icon;
 use Mailery\Channel\Entity\Channel;
 use Mailery\Channel\Module;
-use Mailery\Subscriber\Entity\Group;
 use Mailery\Widget\Dataview\Columns\ActionColumn;
 use Mailery\Widget\Dataview\Columns\DataColumn;
 use Mailery\Widget\Dataview\GridView;
