@@ -6,13 +6,13 @@ use Cycle\Annotated\Annotation\Entity;
 use Cycle\Annotated\Annotation\Column;
 use Cycle\Annotated\Annotation\Inheritance\DiscriminatorColumn;
 use Mailery\Channel\Repository\ChannelRepository;
-use Mailery\Channel\Mapper\ChannelMapper;
 use Cycle\ORM\Entity\Behavior;
+use Mailery\Activity\Log\Mapper\LoggableMapper;
 
 #[Entity(
     table: 'channels',
     repository: ChannelRepository::class,
-    mapper: ChannelMapper::class
+    mapper: LoggableMapper::class
 )]
 #[Behavior\CreatedAt(
     field: 'createdAt',

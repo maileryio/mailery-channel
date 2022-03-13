@@ -19,20 +19,14 @@ use Mailery\Cycle\Mapper\Data\Reader\InheritanceDataReader;
 
 class ChannelRepository extends Repository
 {
-
-    /**
-     * @var ORMInterface
-     */
-    private ORMInterface $orm;
-
     /**
      * @param ORMInterface $orm
      * @param Select $select
      */
-    public function __construct(ORMInterface $orm, Select $select)
-    {
-        $this->orm = $orm;
-
+    public function __construct(
+        private ORMInterface $orm,
+        Select $select
+    ) {
         parent::__construct($select);
     }
 
