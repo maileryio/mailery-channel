@@ -3,7 +3,6 @@
 use Mailery\Activity\Log\Widget\ActivityLogLink;
 use Mailery\Icon\Icon;
 use Mailery\Channel\Entity\Channel;
-use Mailery\Channel\Module;
 use Mailery\Widget\Dataview\Columns\ActionColumn;
 use Mailery\Widget\Dataview\Columns\DataColumn;
 use Mailery\Widget\Dataview\GridView;
@@ -35,7 +34,7 @@ $this->setTitle('All channels');
                     <?= ActivityLogLink::widget()
                         ->tag('b-dropdown-item')
                         ->label('Activity log')
-                        ->module(Module::NAME); ?>
+                        ->group('channel'); ?>
                 </b-dropdown>
                 <b-dropdown right size="sm" variant="primary" class="mx-sm-1 mb-2">
                     <template v-slot:button-content>

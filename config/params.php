@@ -23,7 +23,7 @@ return [
                             return 'Channels';
                         },
                         'url' => static function (UrlGeneratorInterface $urlGenerator) {
-                            return $urlGenerator->generate('/channel/default/index');
+                            return strtok($urlGenerator->generate('/channel/default/index'), '?');
                         },
                     ],
                 ],
