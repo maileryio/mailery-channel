@@ -1,11 +1,24 @@
 <?php
 
 use Yiisoft\Router\UrlGeneratorInterface;
+use Yiisoft\Definitions\DynamicReference;
+use Mailery\Channel\Entity\Channel;
 
 return [
     'yiisoft/yii-cycle' => [
         'entity-paths' => [
             '@vendor/maileryio/mailery-channel/src/Entity',
+        ],
+    ],
+
+    'maileryio/mailery-activity-log' => [
+        'entity-groups' => [
+            'channel' => [
+                'label' => DynamicReference::to(static fn () => 'Channel'),
+                'entities' => [
+                    Channel::class,
+                ],
+            ],
         ],
     ],
 

@@ -2,54 +2,36 @@
 
 namespace Mailery\Channel\Controller;
 
-use Mailery\Channel\Service\ChannelCrudService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Yiisoft\Router\UrlGeneratorInterface as UrlGenerator;
 use Yiisoft\Yii\View\ViewRenderer;
 use Mailery\Channel\Repository\ChannelRepository;
-use Psr\Http\Message\ResponseFactoryInterface as ResponseFactory;
 use Mailery\Widget\Search\Form\SearchForm;
 use Mailery\Widget\Search\Model\SearchByList;
 use Mailery\Channel\Filter\ChannelFilter;
 use Mailery\Channel\Search\ChannelSearchBy;
 use Mailery\Channel\Model\ChannelTypeList;
+use Mailery\Brand\BrandLocatorInterface as BrandLocator;
 
 class DefaultController
 {
     private const PAGINATION_INDEX = 10;
 
     /**
-     * @var ViewRenderer
-     */
-    private ViewRenderer $viewRenderer;
-
-    /**
-     * @var ResponseFactory
-     */
-    private ResponseFactory $responseFactory;
-
-    /**
-     * @var ChannelRepository
-     */
-    private ChannelRepository $channelRepo;
-
-    /**
      * @param ViewRenderer $viewRenderer
-     * @param ResponseFactory $responseFactory
      * @param ChannelRepository $channelRepo
+     * @param BrandLocator $brandLocator
      */
     public function __construct(
-        ViewRenderer $viewRenderer,
-        ResponseFactory $responseFactory,
-        ChannelRepository $channelRepo
+        private ViewRenderer $viewRenderer,
+        private ChannelRepository $channelRepo,
+        BrandLocator $brandLocator
     ) {
         $this->viewRenderer = $viewRenderer
             ->withController($this)
             ->withViewPath(dirname(dirname(__DIR__)) . '/views');
 
-        $this->responseFactory = $responseFactory;
-        $this->channelRepo = $channelRepo;
+        $this->channelRepo = $channelRepo->withBrand($brandLocator->getBrand());
     }
 
     /**
