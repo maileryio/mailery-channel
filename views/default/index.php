@@ -103,8 +103,9 @@ $this->setTitle('All channels');
                     ->header('Delete')
                     ->view('')
                     ->update('')
-                    ->delete(function (Channel $data, int $index) use ($urlGenerator) {
+                    ->delete(function (Channel $data, int $index) use ($csrf, $urlGenerator) {
                         return Link::widget()
+                            ->csrf($csrf)
                             ->label(Icon::widget()->name('delete')->options(['class' => 'mr-1'])->render())
                             ->method('delete')
                             ->href($urlGenerator->generate($data->getDeleteRouteName(), $data->getDeleteRouteParams()))
