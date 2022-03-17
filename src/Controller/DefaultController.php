@@ -11,7 +11,6 @@ use Mailery\Widget\Search\Model\SearchByList;
 use Mailery\Channel\Filter\ChannelFilter;
 use Mailery\Channel\Search\ChannelSearchBy;
 use Mailery\Channel\Model\ChannelTypeList;
-use Mailery\Brand\BrandLocatorInterface as BrandLocator;
 
 class DefaultController
 {
@@ -20,18 +19,14 @@ class DefaultController
     /**
      * @param ViewRenderer $viewRenderer
      * @param ChannelRepository $channelRepo
-     * @param BrandLocator $brandLocator
      */
     public function __construct(
         private ViewRenderer $viewRenderer,
-        private ChannelRepository $channelRepo,
-        BrandLocator $brandLocator
+        private ChannelRepository $channelRepo
     ) {
         $this->viewRenderer = $viewRenderer
             ->withController($this)
             ->withViewPath(dirname(dirname(__DIR__)) . '/views');
-
-        $this->channelRepo = $channelRepo->withBrand($brandLocator->getBrand());
     }
 
     /**
