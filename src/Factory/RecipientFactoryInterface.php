@@ -2,22 +2,20 @@
 
 namespace Mailery\Channel\Factory;
 
+use Mailery\Campaign\Entity\Recipient;
+use Mailery\Subscriber\Entity\Subscriber;
+
 interface RecipientFactoryInterface
 {
     /**
-     * @param string $name
-     * @return self
+     * @param Subscriber $subscriber
+     * @return Recipient
      */
-//    public function withName(string $name): self;
-//
-//    /**
-//     * @param string $email
-//     * @return self
-//     */
-//    public function withEmail(string $email): self;
-//
-//    /**
-//     * @return RecipientInterface
-//     */
-//    public function create(): RecipientInterface;
+    public function fromSubscriber(Subscriber $subscriber): Recipient;
+
+    /**
+     * @param string $identificator
+     * @return Recipient[]
+     */
+    public function fromIdentificator(string $identificator): array;
 }

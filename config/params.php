@@ -24,7 +24,6 @@ return [
 
     'maileryio/mailery-channel' => [
         'types' => [],
-        'handlers' => [],
     ],
 
     'maileryio/mailery-menu-navbar' => [
