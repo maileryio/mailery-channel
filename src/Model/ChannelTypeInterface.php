@@ -29,12 +29,6 @@ interface ChannelTypeInterface
     public function getCreateRouteParams(): array;
 
     /**
-     * @param object $entity
-     * @return bool
-     */
-    public function isEntitySameType(Channel $entity): bool;
-
-    /**
      * @return HandlerInterface
      */
     public function getHandler(): HandlerInterface;
@@ -43,4 +37,10 @@ interface ChannelTypeInterface
      * @return RecipientIterator
      */
     public function getRecipientIterator(): RecipientIterator;
+
+    /**
+     * @param object $entity
+     * @return bool
+     */
+    public function isEntitySameType(Channel $entity): bool;
 }
