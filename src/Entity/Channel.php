@@ -9,6 +9,9 @@ use Mailery\Channel\Repository\ChannelRepository;
 use Cycle\ORM\Entity\Behavior;
 use Mailery\Activity\Log\Mapper\LoggableMapper;
 
+/**
+* This doc block required for STI/JTI
+*/
 #[Entity(
     table: 'channels',
     repository: ChannelRepository::class,
