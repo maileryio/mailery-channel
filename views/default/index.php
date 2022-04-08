@@ -74,6 +74,13 @@ $this->setTitle('All channels');
                     'value()' => [fn (Channel $model) => Html::a($model->getName(), $url->generate($model->getViewRouteName(), $model->getViewRouteParams()))],
                 ],
                 [
+                    'label()' => ['Type'],
+                    'value()' => [static function (Channel $model) use ($channelTypes) {
+                        $channelType = $channelTypes->findByEntity($model);
+                        return $channelType ? $channelType->getLabel() : null;
+                    }],
+                ],
+                [
                     'label()' => ['Edit'],
                     'value()' => [static function (Channel $model) use ($url) {
                         return Html::a(
