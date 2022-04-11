@@ -88,4 +88,12 @@ abstract class Channel
 
         return $this;
     }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getUpdatedAt(): \DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
 }
