@@ -32,10 +32,13 @@ abstract class Channel
     protected int $id;
 
     #[Column(type: 'string(255)')]
-    protected string $name;
+    protected string $type;
 
     #[Column(type: 'string(255)')]
-    protected string $type;
+    protected string $name;
+
+    #[Column(type: 'text', nullable: true)]
+    protected ?string $description = null;
 
     #[Column(type: 'datetime')]
     private \DateTimeImmutable $createdAt;
@@ -85,6 +88,25 @@ abstract class Channel
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return self
+     */
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
