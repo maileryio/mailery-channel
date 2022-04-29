@@ -12,6 +12,7 @@ use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Data\Reader\Sort;
 use Mailery\Brand\Entity\Brand;
 use Mailery\Channel\Entity\Channel;
+use Mailery\Channel\Model\ChannelTypeInterface as ChannelType;
 use Yiisoft\Yii\Cycle\Data\Reader\EntityReader;
 
 class ChannelRepository extends Repository
@@ -65,6 +66,28 @@ class ChannelRepository extends Repository
                     'id' => ['in' => new Parameter($channelIds, \PDO::PARAM_INT)],
                 ]);
         }
+
+        return $repo;
+    }
+
+    /**
+     * @param ChannelType[] $channelTypes
+     * @return self
+     */
+    public function withChannelTypes(ChannelType ...$channelTypes): self
+    {
+        $channelTypes = array_map(
+            function (ChannelType $channelType) {
+                return $channelType->getName();
+            },
+            $channelTypes
+        );
+
+        $repo = clone $this;
+        $repo->select
+            ->andWhere([
+                'type' => ['in' => new Parameter($channelTypes, \PDO::PARAM_STR)],
+            ]);
 
         return $repo;
     }

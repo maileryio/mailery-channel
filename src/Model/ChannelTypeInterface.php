@@ -11,6 +11,11 @@ interface ChannelTypeInterface
     /**
      * @return string
      */
+    public function getName(): string;
+
+    /**
+     * @return string
+     */
     public function getLabel(): string;
 
     /**
