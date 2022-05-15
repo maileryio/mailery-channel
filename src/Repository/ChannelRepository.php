@@ -71,6 +71,21 @@ class ChannelRepository extends Repository
     }
 
     /**
+     * @param Channel $channel
+     * @return self
+     */
+    public function withSameType(Channel $channel): self
+    {
+        $repo = clone $this;
+        $repo->select
+            ->andWhere([
+                'type' => $channel->getType(),
+            ]);
+
+        return $repo;
+    }
+
+    /**
      * @param ChannelType[] $channelTypes
      * @return self
      */
