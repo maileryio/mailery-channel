@@ -113,6 +113,12 @@ $this->setTitle('All channels');
                                     ->method('delete')
                                     ->href($url->generate($model->getDeleteRouteName(), $model->getDeleteRouteParams()))
                                     ->confirm('Are you sure?')
+                                    ->afterRequest(<<<JS
+                                        (res) => {
+                                            res.redirected && res.url && (window.location.href = res.url);
+                                        }
+                                        JS
+                                    )
                                     ->options([
                                         'class' => 'text-decoration-none text-danger',
                                     ])

@@ -4,6 +4,7 @@ namespace Mailery\Channel\Model;
 
 use Mailery\Channel\Handler\HandlerInterface;
 use Mailery\Campaign\Recipient\Model\RecipientIterator;
+use Mailery\Campaign\Recipient\Factory\IdentificatorFactoryInterface as IdentificatorFactory;
 use Mailery\Channel\Entity\Channel;
 
 interface ChannelTypeInterface
@@ -42,6 +43,11 @@ interface ChannelTypeInterface
      * @return RecipientIterator
      */
     public function getRecipientIterator(): RecipientIterator;
+
+    /**
+     * @return IdentificatorFactory
+     */
+    public function getIdentificatorFactory(): IdentificatorFactory;
 
     /**
      * @param object $entity
