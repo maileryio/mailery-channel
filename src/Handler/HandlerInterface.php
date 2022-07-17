@@ -9,9 +9,9 @@ interface HandlerInterface
 {
     /**
      * @param bool $suppressErrors
-     * @return bool
+     * @return self
      */
-    public function withSuppressErrors(bool $suppressErrors): bool;
+    public function withSuppressErrors(bool $suppressErrors): self;
 
     /**
      * @param Sendout $sendout
