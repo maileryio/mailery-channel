@@ -7,6 +7,7 @@ use Mailery\Widget\Link\Link;
 use Mailery\Widget\Search\Widget\SearchWidget;
 use Yiisoft\Html\Html;
 use Yiisoft\Yii\DataView\GridView;
+use Mailery\Web\Vue\Directive;
 
 /** @var Yiisoft\Yii\WebView $this */
 /** @var Mailery\Widget\Search\Form\SearchForm $searchForm */
@@ -82,13 +83,13 @@ $this->setTitle('All channels');
                     ->columns([
                         [
                             'label()' => ['Name'],
-                            'value()' => [fn (Channel $model) => Html::a($model->getName(), $url->generate($model->getViewRouteName(), $model->getViewRouteParams()))],
+                            'value()' => [fn (Channel $model) => Html::a(Directive::pre($model->getName()), $url->generate($model->getViewRouteName(), $model->getViewRouteParams()))],
                         ],
                         [
                             'label()' => ['Type'],
                             'value()' => [static function (Channel $model) use ($channelTypes) {
                                 $channelType = $channelTypes->findByEntity($model);
-                                return $channelType ? $channelType->getLabel() : null;
+                                return $channelType ? Directive::pre($channelType->getLabel()) : null;
                             }],
                         ],
                         [
