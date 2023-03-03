@@ -15,8 +15,8 @@ interface HandlerInterface
 
     /**
      * @param Sendout $sendout
-     * @param Recipient $recipient
+     * @param \Iterator|Recipient[] $recipients
      * @return bool
      */
-    public function handle(Sendout $sendout, Recipient $recipient): bool;
+    public function handle(Sendout $sendout, \Iterator|array $recipients): bool;
 }
